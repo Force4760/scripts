@@ -1,0 +1,48 @@
+
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+node_modules/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# ide
+.vscode/
+.idea/
+
+# system
+.DS_Store
+
+# runtime
+.log
+.lock
+.tmp
+
+# builds and outputs
+bin/
+out/
+target/
+
+# private
+private/*
+priv/*
+*/private
+*/priv
