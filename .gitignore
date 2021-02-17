@@ -44,5 +44,4 @@ target/
 # private
 private/*
 priv/*
-*/private
-*/priv
+password.py
