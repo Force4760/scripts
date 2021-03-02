@@ -7,6 +7,19 @@ import os
 import json
 import sys
 
+def term(path:str, e:str):
+    """A function that runs some terminal commands
+    changes to the notes folder, and opens the note
+
+    Args:
+        path (str): path of the note
+        e (str): editor to open 
+        
+    """
+    folder = os.path.expanduser("~/Documents/Notes")
+    os.chdir(folder)
+    subprocess.run([e, path])
+
 
 def settings() -> list:
     """
@@ -34,7 +47,7 @@ def run(e: str, g: bool):
     g: bool -> if it should run git
     """
     path = note_file()
-    subprocess.run([e, path])
+    term(path, e)
     if g:
         git()
 
@@ -52,7 +65,7 @@ def todo(e: str, g: bool):
 
     with open(path, "a") as f:
         f.write("\n[ ] ")
-    subprocess.run([e, path])
+    term(path, e)
     if g:
         git()
 

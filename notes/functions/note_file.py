@@ -67,7 +67,7 @@ def note_file(w: str = ""):
     hour = day.get_date(True)
     date = day.get_date(False)
 
-    file = os.path.abspath(folder + "/" + hour[0] + ".md")
+    file = os.path.abspath(folder + "/" + str(int(hour[0])) + ".md")
 
     file_edit(file, date, hour)
     if w:

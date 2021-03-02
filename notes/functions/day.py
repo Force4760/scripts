@@ -23,5 +23,5 @@ def get_date(hour: bool) -> list:
         day = today.strftime("%d")
         month = today.strftime("%m")
         year = today.strftime("%Y")
-
+        year = str(year)[-2:]
         return [day, month, year]
