@@ -24,10 +24,14 @@ def dont_exists(file: str, date: list, hour: list):
     hour: list -> a list [day, hour, minute]
     """
     with open(file, "w") as f:
-        d = "# " + date[0] + "/" + date[1] + "/" + date[2] + "\n\n"
-        t = "## Done\n\n"
-        h = "## " + hour[1] + ":" + hour[2] + "\n"
-        f.write(d + t + h)
+        d = "# " + date[0] + "/" + date[1] + "/" + date[2] + "\n"
+        if os.path.exists("./.config/templates/non_date_template.md"):
+            with open("./.config/templates/date_template.md", "r") as t:
+                template = "\n" + t.read() + "\n"
+        else:
+            template = ""
+        h = "\n### " + hour[1] + ":" + hour[2] + "\n"
+        f.write(d + template + h)
 
 
 def exists(file: str, date: list, hour: list):
@@ -39,7 +43,7 @@ def exists(file: str, date: list, hour: list):
     hour: list -> a list [day, hour, minute]
     """
     with open(file, "a") as f:
-        h = "## " + hour[1] + ":" + hour[2]
+        h = "### " + hour[1] + ":" + hour[2]
         f.write("\n\n" + h + "\n")
 
 
@@ -54,20 +58,20 @@ def copy(file, w: str):
         f.write(w)
 
 
-def note_file(w: str = ""):
+def note_file(b: str, w: str = ""):
     """
     Prepare note
-
+    s: str -> base path
     w: str -> if given it will be written to the file. (optional)
     """
     # check folder
-    folder = check_folder.check()
+    folder = check_folder.check(b)
 
     # get date
     hour = day.get_date(True)
     date = day.get_date(False)
 
-    file = os.path.abspath(folder + "/" + str(int(hour[0])) + ".md")
+    file = folder + "/" + str(int(hour[0])) + ".md"
 
     file_edit(file, date, hour)
     if w:

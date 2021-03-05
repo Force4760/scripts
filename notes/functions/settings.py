@@ -3,11 +3,12 @@ import os
 
 
 def set_settings():
-    with open("./settings.json", "r") as f:
+    with open("./.config/settings.json", "r") as f:
         data = json.load(f)
 
         e = input(f"Editor: ")
         g = input(f"Execute git (y/n): ")
+        b = input(f"Base Folder: ")
 
         if e:
             data["editor"] = e
@@ -16,7 +17,10 @@ def set_settings():
             data["git"] = True
         else:
             data["git"] = False
+        
+        if b:
+            data["base"] = b
 
-    os.remove("./settings.json")
-    with open("./settings.json", "w") as f:
+    os.remove("./.config/settings.json")
+    with open("./.config/settings.json", "w") as f:
         json.dump(data, f, indent=4)

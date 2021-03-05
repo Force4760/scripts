@@ -2,23 +2,24 @@ import os
 import functions.day as day
 
 
-def check():
+def check(b: str):
     """
     Check if the notes folder exists
+    b: str -> base folder
     """
     # check if notes folder exists
-    folder = os.path.expanduser('~/Documents/Notes')
+    folder = b + "Notes/"
     make_d(folder)
 
     # get date
     date = day.get_date(False)
 
     # check if year folder exists
-    folder = os.path.expanduser('~/Documents/Notes/' + str(int(date[2])))
+    folder = folder + str(int(date[2]))
     make_d(folder)
 
     # check if month folder exists
-    folder = os.path.expanduser('~/Documents/Notes/' + str(int(date[2])) + "/" + str(int(date[1])))
+    folder = folder + "/" + str(int(date[1]))
     make_d(folder)
 
     return folder
